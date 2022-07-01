@@ -40,4 +40,5 @@ export const NinjaBackgroundLogo = styled.img`
 export const CartIcon = styled.img`
     height: 2rem;
     width: 2rem;
+    cursor: pointer;
 `

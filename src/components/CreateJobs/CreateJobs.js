@@ -5,7 +5,6 @@ import { purple } from "../../colors/colors";
 import axios from "axios";
 import { BASE_URL, headers } from "../../constants/constants";
 
-
 //RESOLVER BUG QUE NÃO DÁ PRA USAR MULTIPLE NO CHAKRA UI
 export default class CreateJobs extends Component {
   state = {

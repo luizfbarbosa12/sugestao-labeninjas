@@ -32,12 +32,12 @@ export default class App extends React.Component {
 
   createJob = () => {
     this.setState({currentPage: 'createJobs'})
-    console.log('clicou em criar job')
+    
   }
 
   hireNinja = () => {
     this.setState({currentPage: 'jobsList'})
-    console.log('clicou em contratar ninja')
+  
   }
 
   goToHomePage = () => {
@@ -45,7 +45,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.currentPage)
     return (
       <ChakraProvider>
         <MainPage>
