@@ -10,9 +10,10 @@ import {
   Title,
   StyledChakraBox,
   MainPage,
-  CartIcon
+  CartIcon,
+  ParentContainer
 } from "./app.styles";
-import cart from './assets/cart.png'
+import cart from "./assets/cart.png";
 
 export default class App extends React.Component {
   state = {
@@ -20,41 +21,43 @@ export default class App extends React.Component {
   };
 
   renderPage = () => {
-    switch(this.state.currentPage) {
+    switch (this.state.currentPage) {
       case "createJobs":
         return <CreateJobs />;
       case "jobsList":
         return <JobsList />;
       default:
-        return <HomePage createJob={this.createJob} hireNinja={this.hireNinja}/>;
+        return (
+          <HomePage createJob={this.createJob} hireNinja={this.hireNinja} />
+        );
     }
   };
 
   createJob = () => {
-    this.setState({currentPage: 'createJobs'})
-    
-  }
+    this.setState({ currentPage: "createJobs" });
+  };
 
   hireNinja = () => {
-    this.setState({currentPage: 'jobsList'})
-  
-  }
+    this.setState({ currentPage: "jobsList" });
+  };
 
   goToHomePage = () => {
-    this.setState({currentPage: "homepage"})
-  }
+    this.setState({ currentPage: "homepage" });
+  };
 
   render() {
     return (
       <ChakraProvider>
+        <ParentContainer currentPage={this.state.currentPage}>
         <MainPage>
           <StyledChakraBox bg={purple} w="100%" p={2} color="white">
             <NinjaLogo src={ninjaLogo} alt={"ninja logo"} />
             <Title onClick={this.goToHomePage}>Labeninjas</Title>
-            <CartIcon src={cart} alt="cart"/>
+            <CartIcon src={cart} alt="cart" />
           </StyledChakraBox>
           {this.renderPage()}
         </MainPage>
+        </ParentContainer>
       </ChakraProvider>
     );
   }

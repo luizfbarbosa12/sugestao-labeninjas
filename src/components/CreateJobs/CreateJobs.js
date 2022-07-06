@@ -59,7 +59,7 @@ export default class CreateJobs extends Component {
     axios
       .post(`${BASE_URL}/jobs`, body, headers)
       .then((response) => {
-        console.log(response);
+        alert(response.data.message)
       })
       .catch((error) => {
         console.log(error);

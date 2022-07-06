@@ -19,9 +19,14 @@ export const StyledChakraBox = styled(Box)`
     gap: 1rem;
     align-items: center;
 `
+export const ParentContainer = styled.div`
+    display: flex;
+    border: 1px solid black;
+    height: ${(currentPage) => currentPage === "" ? "100vh": "min-content"};
+`
 export const MainPage = styled.div`
     background-color: ${black};
-    height: 100vh;
+    flex: 1;
 `
 export const NinjaBackground = styled.div`
     display: flex;
