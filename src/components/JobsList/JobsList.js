@@ -1,34 +1,20 @@
 import { Flex, Input, Select } from "@chakra-ui/react";
-import { toHaveStyle } from "@testing-library/jest-dom/dist/matchers";
-import axios from "axios";
+
 import React, { Component } from "react";
-import { BASE_URL, headers } from "../../constants/constants";
+
 import Card from "../Card/Card";
 import { StyledFlexContainer } from "./JobsList.styles";
 
-//     - De ordenar por:
-//         - Título
-//         - Valor da remuneração
-//         - Prazo
+
 export default class JobsList extends Component {
   state = {
-    jobs: [],
     minValue: "",
     maxValue: "",
     queryType: "",
     search: "",
   };
 
-  componentDidMount() {
-    axios
-      .get(`${BASE_URL}/jobs`, headers)
-      .then((response) => {
-        this.setState({ jobs: response.data.jobs });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  
 
   handleMinPrice = (e) => {
     this.setState({ minValue: e.target.value });
@@ -47,8 +33,7 @@ export default class JobsList extends Component {
   };
 
   render() {
-    console.log(this.state.jobs);
-    const renderJobsList = this.state.jobs
+    const renderJobsList = this.props.jobs
       .filter((job) => {
         return job.title
           .toLowerCase()
@@ -80,7 +65,7 @@ export default class JobsList extends Component {
         }
       })
       .map((job) => {
-        return <Card key={job.id} job={job} />;
+        return <Card goToDetails={this.props.goToDetails} key={job.id} job={job} />;
       });
     return (
       <div>

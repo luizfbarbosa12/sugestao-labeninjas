@@ -7,11 +7,14 @@ import checkout from "../../assets/check-out.png";
 export default class Card extends Component {
   state = {
     purchased: false,
+    id: ''
   };
 
   changeIcon = () => {
     this.setState({ purchased: true });
   };
+
+
   render() {
     return (
       <JobCard direction="column" align="center" justify="center">
@@ -26,7 +29,7 @@ export default class Card extends Component {
         </p>
         <p>Preço: {this.props.job.price.toFixed(2)}</p>
         <ButtonsArea>
-          <Button bg={purple} variant={"outline"}>
+          <Button onClick={() => this.props.goToDetails(this.props.job)} bg={purple} variant={"outline"}>
             Ver detalhes
           </Button>
           <CartIcon
