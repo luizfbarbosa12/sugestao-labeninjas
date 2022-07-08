@@ -25,3 +25,9 @@
         - Título
         - Valor da remuneração
         - Prazo
+#Tarefas não concluídas: 
+
+- Responsividade para celulares
+- Colocar Loadings sempre que estiver carregando alguma requisição
+- Manter os itens no carrinho mesmo que a página seja atualizada
+- Não permitir que um mesmo serviço seja adicionado ao carrinho mais de uma vez
