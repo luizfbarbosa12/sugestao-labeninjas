@@ -25,7 +25,8 @@
         - Título
         - Valor da remuneração
         - Prazo
-#Tarefas não concluídas: 
+        - 
+# Tarefas não concluídas: 
 
 - Responsividade para celulares
 - Colocar Loadings sempre que estiver carregando alguma requisição
