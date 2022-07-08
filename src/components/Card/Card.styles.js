@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { black, purple } from "../../colors/colors";
 
 export const JobCard = styled(Flex)`
-  max-width: 25rem;
+  width: 25rem;
   border: 1px solid ${black};
   margin: 1rem;
   border-radius: 0.5rem;

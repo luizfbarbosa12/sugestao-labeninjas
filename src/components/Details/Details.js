@@ -26,10 +26,10 @@ export default class Details extends Component {
           })}`}</Prazo>
           <Description>{this.props.job.description}</Description>
           <ButtonsContainer>
-            <Button onClick={() => this.props.addToCart(this.props.job)}>
+            <Button onClick={() => this.props.addToCart(this.props.job, this.props.job.id)}>
               Adicionar no carrinho
             </Button>
-            <Button>Voltar pra lista</Button>
+            <Button onClick={this.props.hireNinja}>Voltar pra lista</Button>
           </ButtonsContainer>
         </DetailsCard>
       </Container>

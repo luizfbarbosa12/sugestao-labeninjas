@@ -3,8 +3,7 @@ import { Flex, Input, Select } from "@chakra-ui/react";
 import React, { Component } from "react";
 
 import Card from "../Card/Card";
-import { StyledFlexContainer } from "./JobsList.styles";
-
+import { StyledFlexContainer, CardsContainer, Container } from "./JobsList.styles";
 
 export default class JobsList extends Component {
   state = {
@@ -13,8 +12,6 @@ export default class JobsList extends Component {
     queryType: "",
     search: "",
   };
-
-  
 
   handleMinPrice = (e) => {
     this.setState({ minValue: e.target.value });
@@ -46,7 +43,7 @@ export default class JobsList extends Component {
       })
       .filter((job) => {
         return (
-          this.state.maxValue === "" || job.price <= Number(this.state.minValue)
+          this.state.maxValue === "" || job.price <= Number(this.state.maxValue)
         );
       })
       .sort((currentValue, nextValue) => {
@@ -63,12 +60,13 @@ export default class JobsList extends Component {
           default:
             return currentValue.price - nextValue.price;
         }
-      })
-      .map((job) => {
-        return <Card goToDetails={this.props.goToDetails} key={job.id} job={job} />;
+      }).map((job) => {
+        return (
+          <Card id={this.props.id} addedToCart={this.props.addedToCart} addToCart={this.props.addToCart} goToDetails={this.props.goToDetails} key={job.id} job={job} />
+        );
       });
     return (
-      <div>
+      <Container>
         <StyledFlexContainer grow={0} justify={"center"} align={"center"}>
           <Select
             onChange={this.handleQueryType}
@@ -101,8 +99,8 @@ export default class JobsList extends Component {
             type={"text"}
           />
         </StyledFlexContainer>
-        {renderJobsList}
-      </div>
+        <CardsContainer>{renderJobsList}</CardsContainer>
+      </Container>
     );
   }
 }

@@ -8,7 +8,7 @@ import JobsList from "./components/JobsList/JobsList";
 import { purple } from "./colors/colors";
 import ninjaLogo from "./assets/ninja.png";
 import Details from "./components/Details/Details";
-import CartPage from './components/CartPage/CartPage'
+import CartPage from "./components/CartPage/CartPage";
 import {
   NinjaLogo,
   Title,
@@ -26,6 +26,7 @@ export default class App extends React.Component {
     currentJobDetails: {},
     cart: [],
     addedToCart: false,
+    id: "",
   };
 
   componentDidMount() {
@@ -44,7 +45,12 @@ export default class App extends React.Component {
         return <CreateJobs />;
       case "jobsList":
         return (
-          <JobsList jobs={this.state.jobs} goToDetails={this.goToDetails} />
+          <JobsList
+            id={this.state.id}
+            jobs={this.state.jobs}
+            goToDetails={this.goToDetails}
+            addToCart={this.addToCart}
+          />
         );
       case "details":
         return (
@@ -52,13 +58,12 @@ export default class App extends React.Component {
             addedToCart={this.state.addedToCart}
             addToCart={this.addToCart}
             job={this.state.currentJobDetails}
+            hireNinja={this.hireNinja}
           />
         );
       case "cart":
         return (
-          <CartPage
-            cart={this.state.cart}
-          />
+          <CartPage addedToCart={this.state.addedToCart} goToDetails={this.goToDetails} cart={this.state.cart} />
         );
       default:
         return (
@@ -67,9 +72,14 @@ export default class App extends React.Component {
     }
   };
 
-  addToCart = (job) => {
-    this.setState({ addedToCart: true });
+  addToCart = (job, id) => {
     this.setState({ cart: [...this.state.cart, job] });
+    this.setState({ addedToCart: true });
+    this.setState({ id: id });
+    const newJobsList = this.state.jobs.filter((job) => {
+      return job.id !== id;
+    });
+    this.setState({ jobs: newJobsList });
   };
 
   createJob = () => {
@@ -79,11 +89,12 @@ export default class App extends React.Component {
   goToDetails = (job) => {
     this.setState({ currentPage: "details" });
     this.setState({ currentJobDetails: job });
+    this.setState({ addedToCart: false });
   };
 
   goToCart = () => {
-    this.setState({currentPage: "cart"})
-  }
+    this.setState({ currentPage: "cart" });
+  };
 
   hireNinja = () => {
     this.setState({ currentPage: "jobsList" });
@@ -93,6 +104,12 @@ export default class App extends React.Component {
     this.setState({ currentPage: "homepage" });
   };
 
+  calculatesTotalValue = () => {
+    const totalValue = this.state.cart.reduce((prevJob, currentJob) => {
+      return prevJob.price + currentJob.price
+    }, this.state.total)
+    this.setState({total: totalValue})
+  }
   render() {
     return (
       <ChakraProvider>

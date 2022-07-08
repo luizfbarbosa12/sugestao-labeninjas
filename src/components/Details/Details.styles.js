@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { black, purple } from "../../colors/colors";
 
 export const Container = styled.div`
-  height: 100vh;
+  height: 93vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,7 +14,6 @@ export const DetailsCard = styled.div`
   border-radius: 1rem;
   box-shadow: 10px 10px 17px -6px rgba(0, 0, 0, 0.75);
   transition: all .5s ease;
-  ${(props) => console.log(props)}
   ${(props) => props.addedToCart && "transform: translate(15rem, 5rem) rotate(15deg)"};
   ${(props) => props.addedToCart && "opacity: 0"};
 `;

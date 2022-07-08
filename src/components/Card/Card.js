@@ -5,16 +5,6 @@ import { Button } from "@chakra-ui/react";
 import { purple } from "../../colors/colors";
 import checkout from "../../assets/check-out.png";
 export default class Card extends Component {
-  state = {
-    purchased: false,
-    id: ''
-  };
-
-  changeIcon = () => {
-    this.setState({ purchased: true });
-  };
-
-
   render() {
     return (
       <JobCard direction="column" align="center" justify="center">
@@ -29,12 +19,18 @@ export default class Card extends Component {
         </p>
         <p>Preço: {this.props.job.price.toFixed(2)}</p>
         <ButtonsArea>
-          <Button onClick={() => this.props.goToDetails(this.props.job)} bg={purple} variant={"outline"}>
+          <Button
+            onClick={() => this.props.goToDetails(this.props.job)}
+            bg={purple}
+            variant={"outline"}
+          >
             Ver detalhes
           </Button>
           <CartIcon
-            onClick={this.changeIcon}
-            src={this.state.purchased ? checkout : cart}
+            onClick={() =>
+              this.props.addToCart(this.props.job, this.props.job.id)
+            }
+            src={this.props.addedToCart ? checkout : cart}
             alt="carrinho"
           />
         </ButtonsArea>

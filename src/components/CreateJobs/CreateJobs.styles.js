@@ -7,6 +7,6 @@ export const StyledForm = styled.form`
   justify-content: center;
   margin: 0 auto;
   width: 31.25rem;
-  padding-top: 13.25rem;
   gap: 2rem;
+  min-height: 93vh;
 `;
