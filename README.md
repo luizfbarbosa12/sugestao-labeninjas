@@ -2,7 +2,7 @@
 
 ## Deploy no surge
 
-`(quaint-trainsss.surge.sh)`
+(quaint-trainsss.surge.sh)
 
 # Tarefas concluídas
 - Criação dos serviços oferecidos
